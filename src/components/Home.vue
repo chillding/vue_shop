@@ -10,6 +10,7 @@
                     background-color="#001529"
                     text-color="#fff"
                     active-text-color="#2f54eb"
+                    :default-active="activePath"
                     :collapse="isCollapse"
                     :collapse-transition="false"
                     :unique-opened="true"
@@ -24,7 +25,11 @@
                         <span>{{item.authName}}</span>
                     </template>
                     <!-- 二级菜单 -->
-                    <el-menu-item :index="'/' + subItem.path" v-for="subItem in item.children" :key="subItem.id">
+                    <el-menu-item
+                            :index="'/' + subItem.path"
+                            v-for="subItem in item.children"
+                            :key="subItem.id"
+                            @click="saveNameState('/' + subItem.path)">
                         <template slot="title">
                             <!-- 图标 -->
                             <i class="el-icon-position"></i>
@@ -59,10 +64,12 @@
             return{
                 menulist: [],
                 isCollapse: false,
+                activePath: '',
             }
         },
         created() {
             this.getMenuList()
+            this.activePath = window.sessionStorage.getItem('activePath')
         },
         methods: {
             loginOut() {
@@ -72,18 +79,24 @@
                 this.$router.push('/login')
             },
             linkHome() {
-                this.$router.push('/')
+                this.$router.push('/welcome')
+                window.sessionStorage.removeItem('activePath')
             },
             // 获取所有的菜单
             async getMenuList() {
                 const { data: res } = await this.$http.get('menus')
                 if (res.meta.status !== 200) return this.$message.error(res.meta.msg)
                 this.menulist = res.data
-                console.log(this.menulist)
+                // console.log(this.menulist)
             },
             // 菜单的折叠与展开
             toggleCollapse() {
                 this.isCollapse = !this.isCollapse
+            },
+            // 保存链接的激活状态
+            saveNameState(activePath){
+                window.sessionStorage.setItem('activePath', activePath)
+                this.activePath = activePath
             }
         }
     }
@@ -116,6 +129,9 @@
     }
     .el-aside{
         background-color: #001529 ;
+    }
+    .el-main{
+        padding: 0px;
     }
     .el-footer{
         padding: 24px 50px;

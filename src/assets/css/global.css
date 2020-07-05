@@ -6,3 +6,43 @@ body,
     padding: 0;
     background-color: #f0f2f5;
 }
+.breadcrumb_main{
+    background: #ffffff;
+    padding: 16px 24px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.breadcrumb_main h1{
+    margin: 8px 0 0;
+    padding-right: 12px;
+    color: rgba(0,0,0,.85);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 32px;
+}
+.breadcrumb_main p{
+    margin: 8px 0 0;
+    color: rgba(0,0,0,.65);
+    font-size: 14px;
+    font-variant: tabular-nums;
+    line-height: 1.5;
+}
+.el-breadcrumb{
+    color: rgba(0,0,0,.45);
+    font-size: 14px;
+    line-height: 1.5;
+    list-style: none;
+}
+.element_content{
+    width: 100%;
+    min-height: 100%;
+}
+.element_children_content{
+    margin: 24px 24px 0;
+}
+.el-card{
+    background-color: #ffffff;
+}
+.el-pagination{
+    margin-top: 12px;
+}

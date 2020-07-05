@@ -13,7 +13,7 @@ axios.defaults.baseURL = 'https://www.liulongbin.top:8888/api/private/v1/'
 axios.interceptors.request.use(config => {
   // 为请求头对象添加token验证的Authorization字段
   config.headers.Authorization = window.sessionStorage.getItem('token')
-  console.log('main config:', config)
+  // console.log('main config:', config)
   return config
 })
 
